@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Calculator</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 200px;
+        }
+        td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Button Calculator</h1>
+    
+    <form action="/calculate" method="post">
+        <table>
+            <tr>
+                <td colspan="3">
+                    <input type="text" name="expression" id="expression" readonly>
+                </td>
+                <td>
+                    <button type="button" onclick="clearExpression()">C</button>
+                </td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="appendCharacter('7')">7</button></td>
+                <td><button type="button" onclick="appendCharacter('8')">8</button></td>
+                <td><button type="button" onclick="appendCharacter('9')">9</button></td>
+                <td><button type="button" onclick="appendCharacter('/')">/</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="appendCharacter('4')">4</button></td>
+                <td><button type="button" onclick="appendCharacter('5')">5</button></td>
+                <td><button type="button" onclick="appendCharacter('6')">6</button></td>
+                <td><button type="button" onclick="appendCharacter('*')">*</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="appendCharacter('1')">1</button></td>
+                <td><button type="button" onclick="appendCharacter('2')">2</button></td>
+                <td><button type="button" onclick="appendCharacter('3')">3</button></td>
+                <td><button type="button" onclick="appendCharacter('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="appendCharacter('0')">0</button></td>
+                <td><button type="button" onclick="appendCharacter('.')">.</button></td>
+                <td><button type="button" onclick="calculate()">=</button></td>
+                <td><button type="button" onclick="appendCharacter('+')">+</button></td>
+            </tr>
+        </table>
+    </form>
+
+    {% if result is defined %}
+        <p>Result: {{ result }}</p>
+    {% endif %}
+
+    <script>
+        function appendCharacter(char) {
+            document.getElementById('expression').value += char;
+        }
+
+        function clearExpression() {
+            document.getElementById('expression').value = '';
+            
+        }
+
+        function calculate() {
+            
+            document.forms[0].submit()
+            
+        }
+      
+    </script>
+</body>
+</html>
